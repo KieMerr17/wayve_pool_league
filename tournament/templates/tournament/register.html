@@ -2,10 +2,14 @@
 {% block title %}Register{% endblock %}
 {% block content %}
     <div class="form-container">
-        <h2>Login</h2>
+        <h2>Register</h2>
+        <br>
         <form method="post">
             {% csrf_token %}
-            {{ form.as_p }}
+            {{ form.username.label_tag }} {{ form.username }}
+            {{ form.email.label_tag }} {{ form.email }}
+            {{ form.password1.label_tag }} {{ form.password1 }}
+            {{ form.password2.label_tag }} {{ form.password2 }}
             <button type="submit">Register</button>
         </form>
     </div>
