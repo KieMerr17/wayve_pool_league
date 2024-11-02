@@ -12,8 +12,13 @@
         <div class="form-wrapper">
             <!-- Intro Section -->
             <div id="intro-section-outer" class="intro-section">
-                <h2>Welcome Back!</h2>
-                <p>Please login to access your account or create a new one if you're new here.</p>
+                <h2>Welcome!</h2>
+                <p>If you would like to take part in the Wayve pool league, please register below or, if you already have, then login.</p>
+                <p>The next set of fixtures will be announced in:</p>
+
+                <!-- Countdown to fixture release date -->
+                <h2 id="countdown-timer" class="countdown"></h2>
+                
                 <button id="login-button" class="action-btn">Login</button>
                 <button id="register-button" class="action-btn">Signup</button>
             </div>
@@ -65,6 +70,34 @@
             </div>
         </div>
     </div>
+
+    <script>
+        // Set the date we're counting down to (change to your desired date)
+        const targetDate = new Date('2024-11-03'); // Specify your target date here
+    
+        // Update the countdown every 1 second
+        const countdownFunction = setInterval(() => {
+            const now = new Date().getTime();
+            const distance = targetDate - now;
+    
+            // Time calculations for days, hours, minutes and seconds
+            const days = Math.floor(distance / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((distance % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((distance % (1000 * 60)) / 1000);
+    
+            // Display the result in the countdown element
+            document.getElementById('countdown-timer').innerHTML = `
+                ${days}d ${hours}h ${minutes}m ${seconds}s
+            `;
+    
+            // If the countdown is over, write some text
+            if (distance < 0) {
+                clearInterval(countdownFunction);
+                document.getElementById('countdown-timer').innerHTML = "Registration has ended!";
+            }
+        }, 1000);
+    </script>
 
     <!-- Include JavaScript for toggling forms -->
     <script src="{% static 'js/landing_page.js' %}"></script>
