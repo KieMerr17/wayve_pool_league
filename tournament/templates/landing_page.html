@@ -10,9 +10,18 @@
     <div class="login-container container">
         <!-- Form wrapper for both login and signup forms -->
         <div class="form-wrapper">
+            <!-- Intro Section -->
+            <div class="intro-section">
+                <h2>Welcome Back!</h2>
+                <p>Please login to access your account or create a new one if you're new here.</p>
+                <button id="login-button" class="action-btn">Login</button>
+                <button id="register-button" class="action-btn">Signup</button>
+            </div>
+
             <!-- Login Form -->
-            <div class="form login-form">
+            <div class="form login-form hidden">
                 <h4 class="login-heading">Login</h4>
+                <br>
                 <form id="login-form" action="{% url 'login' %}" method="post">
                     {% csrf_token %}
                     <div class="form-group">
@@ -29,9 +38,10 @@
             </div>
 
             <!-- Signup Form -->
-            <div class="form signup-form">
+            <div class="form signup-form hidden">
                 <h4 class="login-heading">Signup</h4>
-                <form id="signup-form" action="{% url 'register' %}" method="post">
+                <br>
+                <form method="post" action="{% url 'register' %}">
                     {% csrf_token %}
                     <div class="form-group">
                         <label for="signup-username" class="form-label">Username:</label>
