@@ -20,7 +20,7 @@
                 <h2 id="countdown-timer" class="countdown"></h2>
                 
                 <button id="login-button" class="action-btn">Login</button>
-                <button id="register-button" class="action-btn">Signup</button>
+                <button id="signup-button" class="action-btn">Signup</button>
             </div>
 
             <!-- Login Form -->
@@ -91,10 +91,16 @@
                 ${days}d ${hours}h ${minutes}m ${seconds}s
             `;
     
-            // If the countdown is over, write some text
+            // If the countdown is over, write some text and disable the signup button
             if (distance < 0) {
                 clearInterval(countdownFunction);
                 document.getElementById('countdown-timer').innerHTML = "Registration has ended!";
+                
+                const signupButton = document.getElementById('signup-button');
+                signupButton.disabled = true; // Disable the signup button
+                signupButton.innerText = "Signup Closed"; // Change button text
+                signupButton.style.backgroundColor = "red"; // Change background color to red
+                signupButton.style.color = "black"; // Change text color to black
             }
         }, 1000);
     </script>
