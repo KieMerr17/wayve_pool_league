@@ -1,6 +1,38 @@
 {% extends 'base.html' %}
+{% load static %}
 {% block title %}Profile{% endblock %}
 {% block content %}
-    <h2>{{ user.username }}'s Profile</h2>
-    <p>Email: {{ user.email }}</p>
+
+    <!-- Background Image -->
+    <div class="background-image"></div>
+
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-content">
+            <a href="#">Dashboard</a>
+            <a href="#">QA Reports</a>
+            <a href="#">Training Records</a>
+        </div>
+        <a href="{% url 'landing_page' %}" class="logout-button">Logout</a>
+    </div>
+
+    <!-- Main content -->
+    <div id="main-content" class="main-content">
+        <span class="burger-menu" id="toggle-button" onclick="toggleSidebar()">
+            <div></div>
+            <div></div>
+            <div></div>
+        </span>
+
+        <!-- User Profile Section -->
+        <div class="user-info">
+            <h2>{{ user.username }}'s Profile</h2>
+            <div class="info-card">
+                <p><strong>Email:</strong> {{ user.email }}</p>
+            </div>
+        </div>
+    </div>
+
+    <script src="{% static 'js/landing_page.js' %}"></script>
+
 {% endblock %}
