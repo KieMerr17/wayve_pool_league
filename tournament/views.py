@@ -2,10 +2,10 @@ from django.shortcuts import render, redirect
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm
-from .models import Fixture, Standings, Tournament
+from .models import Fixture, Tournament, PlayerProfile  # Ensure PlayerProfile is imported
 
 def landing_page(request):
-    return render(request, 'tournament/landing_page.html') 
+    return render(request, 'landing_page.html') 
 
 def register(request):
     if request.method == 'POST':
@@ -16,21 +16,24 @@ def register(request):
             return redirect('profile')
     else:
         form = UserRegisterForm()
-    return render(request, 'tournament/register.html', {'form': form})
+    return render(request, 'register.html', {'form': form})
 
 @login_required
 def profile(request):
-    return render(request, 'tournament/profile.html')
+    return render(request, 'profile.html')
 
 @login_required
 def fixtures(request):
     fixtures = Fixture.objects.all()
-    return render(request, 'tournament/fixtures.html', {'fixtures': fixtures})
+    return render(request, 'fixtures.html', {'fixtures': fixtures})
 
 @login_required
 def standings(request):
-    standings = Standings.objects.all().order_by('-wins')
-    return render(request, 'tournament/standings.html', {'standings': standings})
+    # Retrieve all PlayerProfiles and their statistics, ordered by wins
+    player_profiles = PlayerProfile.objects.all()  # Assuming you track wins in PlayerProfile
+    players_stats = sorted(player_profiles, key=lambda p: p.wins, reverse=True)  # Sort by wins
+
+    return render(request, 'standings.html', {'players_stats': players_stats})
 
 @login_required
 def generate_fixtures(request):
@@ -52,4 +55,4 @@ def generate_fixtures(request):
         return redirect('fixtures')  # Redirect to fixtures page after generation
 
     tournaments = Tournament.objects.all()
-    return render(request, 'tournament/generate_fixtures.html', {'tournaments': tournaments})
+    return render(request, 'generate_fixtures.html', {'tournaments': tournaments})

@@ -6,6 +6,11 @@ class PlayerProfile(models.Model):
     bio = models.TextField(blank=True)
     avatar = models.ImageField(upload_to='avatars/', blank=True)
 
+    # Add fields to track the standings
+    wins = models.IntegerField(default=0)
+    losses = models.IntegerField(default=0)
+    draws = models.IntegerField(default=0)
+
     def __str__(self):
         return self.user.username
 
@@ -19,15 +24,6 @@ class Fixture(models.Model):
 
     def __str__(self):
         return f"{self.player1.username} vs {self.player2.username} - Round {self.round_number}"
-
-class Standings(models.Model):
-    player = models.OneToOneField(User, on_delete=models.CASCADE)
-    wins = models.IntegerField(default=0)
-    losses = models.IntegerField(default=0)
-    draws = models.IntegerField(default=0)
-
-    def __str__(self):
-        return f"{self.player.username} - Wins: {self.wins}, Losses: {self.losses}, Draws: {self.draws}"
 
 class Tournament(models.Model):
     name = models.CharField(max_length=100)
