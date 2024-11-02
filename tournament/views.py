@@ -5,7 +5,7 @@ from .forms import UserRegisterForm
 from .models import Fixture, Standings, Tournament
 
 def landing_page(request):
-    return render(request, 'tournament/landing_page.html')
+    return render(request, 'tournament/landing_page.html') 
 
 def register(request):
     if request.method == 'POST':
