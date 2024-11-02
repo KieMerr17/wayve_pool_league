@@ -11,7 +11,7 @@
         <!-- Form wrapper for both login and signup forms -->
         <div class="form-wrapper">
             <!-- Intro Section -->
-            <div class="intro-section">
+            <div id="intro-section-outer" class="intro-section">
                 <h2>Welcome Back!</h2>
                 <p>Please login to access your account or create a new one if you're new here.</p>
                 <button id="login-button" class="action-btn">Login</button>
@@ -19,7 +19,7 @@
             </div>
 
             <!-- Login Form -->
-            <div class="form login-form hidden">
+            <div id="login-form-outer" class="form login-form hidden">
                 <h4 class="login-heading">Login</h4>
                 <br>
                 <form id="login-form" action="{% url 'login' %}" method="post">
@@ -38,7 +38,7 @@
             </div>
 
             <!-- Signup Form -->
-            <div class="form signup-form hidden">
+            <div id="signup-form-outer" class="form signup-form hidden">
                 <h4 class="login-heading">Signup</h4>
                 <br>
                 <form method="post" action="{% url 'register' %}">
