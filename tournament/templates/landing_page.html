@@ -1,8 +1,61 @@
 {% extends 'base.html' %}
+{% load static %}
+
 {% block title %}Home{% endblock %}
+
 {% block content %}
-    <div class="landing">
-        <h1>Welcome to the Wayve Pool League</h1>
-        <p>Join us for an exciting season of pool tournaments!</p>
+    <!-- Background Image -->
+    <div class="background-image"></div>
+
+    <div class="login-container container">
+        <!-- Form wrapper for both login and signup forms -->
+        <div class="form-wrapper">
+            <!-- Login Form -->
+            <div class="form login-form">
+                <h4 class="login-heading">Login</h4>
+                <form id="login-form" action="{% url 'login' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="username" class="form-label">Username:</label>
+                        <input type="text" id="username" name="username" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="password" class="form-label">Password:</label>
+                        <input type="password" id="password" name="password" class="form-input" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Login</button>
+                </form>
+                <p><a href="#" id="show-signup">Don't have an account? Signup</a></p>
+            </div>
+
+            <!-- Signup Form -->
+            <div class="form signup-form">
+                <h4 class="login-heading">Signup</h4>
+                <form id="signup-form" action="{% url 'register' %}" method="post">
+                    {% csrf_token %}
+                    <div class="form-group">
+                        <label for="signup-username" class="form-label">Username:</label>
+                        <input type="text" id="signup-username" name="username" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-email" class="form-label">Email:</label>
+                        <input type="email" id="signup-email" name="email" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password1" class="form-label">Password:</label>
+                        <input type="password" id="signup-password1" name="password1" class="form-input" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="signup-password2" class="form-label">Confirm Password:</label>
+                        <input type="password" id="signup-password2" name="password2" class="form-input" required>
+                    </div>
+                    <button type="submit" class="submit-btn">Signup</button>
+                </form>
+                <p><a href="#" id="show-login">Already have an account? Login</a></p>
+            </div>
+        </div>
     </div>
+
+    <!-- Include JavaScript for toggling forms -->
+    <script src="{% static 'js/landing_page.js' %}"></script>
 {% endblock %}
