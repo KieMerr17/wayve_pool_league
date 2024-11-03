@@ -13,7 +13,7 @@
             <!-- Intro Section -->
             <div id="intro-section-outer" class="intro-section">
                 <h2>Welcome!</h2>
-                <p>If you would like to take part in the Wayve pool league, please register below or, if you already have, then login.</p>
+                <p>If you would like to take part in the Wayve pool league, please register below or, if you already have, then please login.</p>
                 <p>The next set of fixtures will be announced in:</p>
 
                 <!-- Countdown to fixture release date -->
@@ -97,10 +97,19 @@
                 document.getElementById('countdown-timer').innerHTML = "Registration has ended!";
                 
                 const signupButton = document.getElementById('signup-button');
-                signupButton.disabled = true; // Disable the signup button
-                signupButton.innerText = "Signup Closed"; // Change button text
-                signupButton.style.backgroundColor = "red"; // Change background color to red
-                signupButton.style.color = "black"; // Change text color to black
+                const showSignup = document.getElementById('show-signup');
+                
+                // Disable the signup button
+                signupButton.disabled = true; 
+                signupButton.innerText = "Signup Closed"; 
+                signupButton.style.backgroundColor = "red"; 
+                signupButton.style.color = "black"; 
+
+                // Disable the show-signup link
+                showSignup.style.pointerEvents = 'none'; // Prevent click action
+                showSignup.style.color = 'gray'; 
+                showSignup.style.textDecoration = 'none'; 
+                showSignup.style.cursor = 'default';
             }
         }, 1000);
     </script>
