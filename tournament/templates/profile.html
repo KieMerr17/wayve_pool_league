@@ -2,10 +2,42 @@
 {% load static %}
 {% block title %}Profile{% endblock %}
 {% block content %}
-    <div class="user-info">
-        <h2>{{ user.username }}'s Profile</h2>
+<div class="user-info">
+    <h2>Edit {{ user.username }}'s Profile</h2>
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+        
+        <!-- Display any success or error messages -->
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <div class="alert {{ message.tags }}">{{ message }}</div>
+                {% endfor %}
+            </div>
+        {% endif %}
+
+        <!-- User Update Form -->
         <div class="info-card">
-            <p><strong>Email:</strong> {{ user.email }}</p>
+            <h3>User Information</h3>
+            {{ user_form.username.label_tag }} {{ user_form.username }}
+            {{ user_form.email.label_tag }} {{ user_form.email }}
         </div>
-    </div>
+
+        <!-- Player Profile Update Form -->
+        <div class="info-card">
+            <h3>Profile Details</h3>
+            {{ profile_form.bio.label_tag }} {{ profile_form.bio }}
+            {{ profile_form.avatar.label_tag }} {{ profile_form.avatar }}
+        </div>
+
+        <div class="info-card">
+            <h3>Standings</h3>
+            {{ profile_form.wins.label_tag }} {{ profile_form.wins }}
+            {{ profile_form.losses.label_tag }} {{ profile_form.losses }}
+            {{ profile_form.draws.label_tag }} {{ profile_form.draws }}
+        </div>
+
+        <button type="submit" class="submit-btn">Save Changes</button>
+    </form>
+</div>
 {% endblock %}
