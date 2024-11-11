@@ -2,38 +2,10 @@
 {% load static %}
 {% block title %}Profile{% endblock %}
 {% block content %}
-
-    <!-- Background Image -->
-    <div class="background-image"></div>
-
-    <!-- Sidebar -->
-    <div id="sidebar" class="sidebar">
-        <div class="sidebar-content">
-            <a href="#">Player Profile</a>
-            <a href="#">Your Matches</a>
-            <a href="#">Recent Matches</a>
-            <a href="#">League Table</a>
-        </div>
-        <a href="{% url 'landing_page' %}" class="logout-button">Logout</a>
-    </div>
-
-    <!-- Main content -->
-    <div id="main-content" class="main-content">
-        <span class="burger-menu" id="toggle-button" onclick="toggleSidebar()">
-            <div></div>
-            <div></div>
-            <div></div>
-        </span>
-
-        <!-- User Profile Section -->
-        <div class="user-info">
-            <h2>{{ user.username }}'s Profile</h2>
-            <div class="info-card">
-                <p><strong>Email:</strong> {{ user.email }}</p>
-            </div>
+    <div class="user-info">
+        <h2>{{ user.username }}'s Profile</h2>
+        <div class="info-card">
+            <p><strong>Email:</strong> {{ user.email }}</p>
         </div>
     </div>
-
-    <script src="{% static 'js/landing_page.js' %}"></script>
-
 {% endblock %}

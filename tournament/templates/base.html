@@ -9,15 +9,39 @@
 </head>
 <body>
     
-    <header class="header">
-        <h1 class="header-title">Wayve Pool League</h1>
-    </header>
+    <!-- Background Image -->
+    <div class="background-image"></div>
 
-    <main class="container">
-        {% block content %}
-        <!-- Page content goes here -->
-        {% endblock %}
-    </main>
+    <!-- Sidebar -->
+    <div id="sidebar" class="sidebar">
+        <div class="sidebar-content">
+            <a href="{% url 'profile' %}">Player Profile</a>
+            <a href="{% url 'fixtures' %}">Your Matches</a>
+            <a href="#">Recent Matches</a>
+            <a href="{% url 'standings' %}">League Table</a>
+        </div>
+        <a href="{% url 'landing_page' %}" class="logout-button">Logout</a>
+    </div>
+
+    <!-- Main content container -->
+    <div id="main-content" class="main-content">
+        <header class="header">
+            <h1 class="header-title">Wayve Pool League</h1>
+            <span class="burger-menu" id="toggle-button" onclick="toggleSidebar()">
+                <div></div>
+                <div></div>
+                <div></div>
+            </span>
+        </header>
+
+        <main class="container">
+            {% block content %}
+            <!-- Page content goes here -->
+            {% endblock %}
+        </main>
+    </div>
+
+    <script src="{% static 'js/landing_page.js' %}"></script>
 
 </body>
 </html>
