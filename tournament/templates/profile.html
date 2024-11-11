@@ -16,25 +16,42 @@
             </div>
         {% endif %}
 
-        <!-- User Update Form -->
-        <div class="info-card">
-            <h3>User Information</h3>
-            {{ user_form.username.label_tag }} {{ user_form.username }}
-            {{ user_form.email.label_tag }} {{ user_form.email }}
-        </div>
+        <!-- Profile Information and Avatar -->
+        <div class="profile-container">
+            <!-- User Update Form -->
+            <div class="info-section">
+                <div class="info-card">
+                    <h3>User Information</h3>
+                    {{ user_form.username.label_tag }} {{ user_form.username }}<br><br>
+                    {{ user_form.email.label_tag }} {{ user_form.email }}
+                </div>
 
-        <!-- Player Profile Update Form -->
-        <div class="info-card">
-            <h3>Profile Details</h3>
-            {{ profile_form.bio.label_tag }} {{ profile_form.bio }}
-            {{ profile_form.avatar.label_tag }} {{ profile_form.avatar }}
-        </div>
+                <div class="info-card">
+                    <h3>Profile Details</h3>
+                    {{ profile_form.bio.label_tag }}<br>
+                    {{ profile_form.bio }}</p>   
+                </div>
 
-        <div class="info-card">
-            <h3>Standings</h3>
-            {{ profile_form.wins.label_tag }} {{ profile_form.wins }}
-            {{ profile_form.losses.label_tag }} {{ profile_form.losses }}
-            {{ profile_form.draws.label_tag }} {{ profile_form.draws }}
+                <div class="info-card">
+                    <h3>Standings</h3>
+                    <!-- Show the player numbers for wins, losses, and draws -->
+                    <p><strong>Wins:</strong> {{ player_profile.wins }}</p>
+                    <p><strong>Losses:</strong> {{ player_profile.losses }}</p>
+                    <p><strong>Draws:</strong> {{ player_profile.draws }}</p>
+                </div>
+            </div>
+
+            <!-- Avatar Image on the Right -->
+            <div class="avatar-section">
+                <h3>Profile Picture</h3>
+                <div class="avatar-wrapper">
+                    {% if profile_form.avatar.value %}
+                        <img src="{{ profile_form.avatar.value.url }}" alt="Profile Avatar" class="avatar-img">
+                    {% endif %}
+                    <!-- Remove the label tag here to prevent 'Current' text -->
+                    {{ profile_form.avatar }} 
+                </div>
+            </div>
         </div>
 
         <button type="submit" class="submit-btn">Save Changes</button>

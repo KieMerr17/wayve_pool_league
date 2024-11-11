@@ -3,10 +3,10 @@ from django.contrib import messages
 from django.contrib.auth import login
 from django.contrib.auth.decorators import login_required
 from .forms import UserRegisterForm, UserUpdateForm, PlayerProfileForm
-from .models import Fixture, Tournament, PlayerProfile 
+from .models import Fixture, Tournament, PlayerProfile
 
 def landing_page(request):
-    return render(request, 'landing_page.html') 
+    return render(request, 'landing_page.html')
 
 def register(request):
     if request.method == 'POST':
@@ -21,23 +21,30 @@ def register(request):
 
 @login_required
 def profile(request):
+    # Get the PlayerProfile associated with the logged-in user
+    player_profile = PlayerProfile.objects.get(user=request.user)
+
     if request.method == 'POST':
+        # Update forms for both user and player profile
         user_form = UserUpdateForm(request.POST, instance=request.user)
-        profile_form = PlayerProfileForm(request.POST, request.FILES, instance=request.user.playerprofile)
+        profile_form = PlayerProfileForm(request.POST, request.FILES, instance=player_profile)
 
         if user_form.is_valid() and profile_form.is_valid():
-            user_form.save()
-            profile_form.save()
+            user_form.save()  # Save user info
+            profile_form.save()  # Save profile info
             messages.success(request, 'Your profile has been updated successfully!')
             return redirect('profile')
     else:
+        # Prepopulate the forms with the current data
         user_form = UserUpdateForm(instance=request.user)
-        profile_form = PlayerProfileForm(instance=request.user.playerprofile)
+        profile_form = PlayerProfileForm(instance=player_profile)
 
     context = {
         'user_form': user_form,
-        'profile_form': profile_form
+        'profile_form': profile_form,
+        'player_profile': player_profile,  # Pass PlayerProfile to the template to show stats
     }
+
     return render(request, 'profile.html', context)
 
 @login_required

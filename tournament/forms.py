@@ -20,4 +20,4 @@ class UserUpdateForm(forms.ModelForm):
 class PlayerProfileForm(forms.ModelForm):
     class Meta:
         model = PlayerProfile
-        fields = ['bio', 'avatar', 'wins', 'losses', 'draws']  # Adjust fields as necessary
+        fields = ['bio', 'avatar']  # Adjust fields as necessary
