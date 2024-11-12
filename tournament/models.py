@@ -4,6 +4,7 @@ from django.db import models
 class PlayerProfile(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     bio = models.TextField(blank=True)
+    slack_url = models.URLField(blank=True)
     avatar = models.ImageField(upload_to='avatars/', blank=True, null=True)  # Nullable for cases with no image
 
     wins = models.IntegerField(default=0)

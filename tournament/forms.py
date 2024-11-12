@@ -20,7 +20,7 @@ class UserUpdateForm(forms.ModelForm):
 class PlayerProfileForm(forms.ModelForm):
     class Meta:
         model = PlayerProfile
-        fields = ['bio', 'avatar']
+        fields = ['bio', 'avatar', 'slack_url']
         widgets = {
             'avatar': forms.FileInput(),  # Simple FileInput without clear/initial text
         }

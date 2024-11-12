@@ -23,7 +23,9 @@
                 <div class="info-card">
                     <h3>User Information</h3>
                     {{ user_form.username.label_tag }} {{ user_form.username }}<br><br>
-                    {{ user_form.email.label_tag }} {{ user_form.email }}
+                    {{ user_form.email.label_tag }} {{ user_form.email }}<br><br>
+                    <!-- Slack URL Field -->
+                    {{ profile_form.slack_url.label_tag }} {{ profile_form.slack_url }}
                 </div>
 
                 <div class="info-card">
