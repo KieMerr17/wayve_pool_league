@@ -8,8 +8,6 @@
     <link rel="stylesheet" href="{% static 'css/style.css' %}">
 </head>
 <body>
-    
-    <!-- Background Image -->
     <div class="background-image"></div>
 
     <!-- Sidebar -->
@@ -22,6 +20,9 @@
         </div>
         <a href="{% url 'landing_page' %}" class="logout-button">Logout</a>
     </div>
+
+    <!-- Overlay for Sidebar in Mobile View -->
+    <div id="sidebar-overlay" class="sidebar-overlay hidden" onclick="toggleSidebar()"></div>
 
     <!-- Main content container -->
     <div id="main-content" class="main-content">
@@ -41,7 +42,11 @@
         </main>
     </div>
 
-    <script src="{% static 'js/landing_page.js' %}"></script>
-
+    <script>
+        function toggleSidebar() {
+            document.getElementById("sidebar").classList.toggle("open");
+            document.getElementById("sidebar-overlay").classList.toggle("hidden");
+        }
+    </script>
 </body>
 </html>
