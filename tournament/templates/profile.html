@@ -4,7 +4,7 @@
 {% block content %}
 <div class="user-info">
     <h2>Edit {{ user.username }}'s Profile</h2>
-    <form method="POST" enctype="multipart/form-data">
+    <form id="profile-form" method="POST" enctype="multipart/form-data">
         {% csrf_token %}
         
         <!-- Display any success or error messages -->
@@ -29,7 +29,7 @@
                 <div class="info-card">
                     <h3>Profile Details</h3>
                     {{ profile_form.bio.label_tag }}<br>
-                    {{ profile_form.bio }}</p>   
+                    {{ profile_form.bio }}
                 </div>
 
                 <div class="info-card">
@@ -45,7 +45,6 @@
             <div class="avatar-section">
                 <h3>Profile Picture</h3>
                 <div class="avatar-wrapper">
-                    <!-- Display the current avatar if it exists -->
                     {% if player_profile.avatar %}
                         <img src="{{ player_profile.avatar.url }}" alt="Profile Avatar" class="avatar-img">
                     {% else %}
@@ -54,7 +53,12 @@
             
                     <!-- Upload new avatar -->
                     <label for="id_avatar">Change Profile Picture:</label>
-                    <input type="file" name="avatar" id="id_avatar">
+                    <input type="file" name="avatar" id="id_avatar" accept="image/*">
+                    
+                    <!-- Loading indicator (hidden by default) -->
+                    <div id="loading-indicator" class="hidden">
+                        <p>Uploading...</p>
+                    </div>
                 </div>
             </div>
         </div>
@@ -62,4 +66,7 @@
         <button type="submit" class="submit-btn">Save Changes</button>
     </form>
 </div>
+
+<!-- Link the external JavaScript file -->
+<script src="{% static 'js/profile_page.js' %}"></script>
 {% endblock %}
