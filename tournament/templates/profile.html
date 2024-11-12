@@ -45,11 +45,16 @@
             <div class="avatar-section">
                 <h3>Profile Picture</h3>
                 <div class="avatar-wrapper">
-                    {% if profile_form.avatar.value %}
-                        <img src="{{ profile_form.avatar.value.url }}" alt="Profile Avatar" class="avatar-img">
+                    <!-- Display the current avatar if it exists -->
+                    {% if player_profile.avatar %}
+                        <img src="{{ player_profile.avatar.url }}" alt="Profile Avatar" class="avatar-img">
+                    {% else %}
+                        <p>No profile picture uploaded.</p>
                     {% endif %}
-                    <!-- Remove the label tag here to prevent 'Current' text -->
-                    {{ profile_form.avatar }} 
+            
+                    <!-- Upload new avatar -->
+                    <label for="id_avatar">Change Profile Picture:</label>
+                    <input type="file" name="avatar" id="id_avatar">
                 </div>
             </div>
         </div>
